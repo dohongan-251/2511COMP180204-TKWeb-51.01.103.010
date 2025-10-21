@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> quản lí sản phẩm </title>
+        <style>
+            .newproduct{
+                background-color: lightgrey;
+                border: 30px solid lightgrey;
+                margin-right: 200pt;
+                display: inline-flex;
+            }
+            button{
+                background-color: blue;
+                color: aliceblue;
+                padding: 10px 15px;
+                border: none;
+                cursor: pointer;
+                
+            }
+            #product_name{
+                padding: 10px;
+                margin-right: 10px;
+                width: 200px;
+                border: none;
+            }
+            button:hover{
+                background-color: dodgerblue;
+            }
+            table{
+                width: 100%;
+                border-collapse: collapse;
+            }
+            th, td{
+                padding: 10px ;
+                text-align: left;
+            }
+            th{
+                background-color: white;
+            }
+            tr:nth-child(even){
+                background-color: grey;
+            }
+            tr:nth-child(odd){
+                background-color: white;
+            }
+            .product_count{
+                float:right;
+                font-weight: bold;
+            }
+            .actions{
+                text-align: right;
+            }
+            .edit-btn{
+                background-color: blue;
+
+            }
+            .del-btn{
+                background-color: red;
+
+            }
+        </style>
+
+    </head>
+    <body>
+        <h2>Add New Product</h2>
+        <div class="newproduct">
+                <input type="text" id="productInput" placeholder="New Product">
+                <button class="btn" onclick="add()">Add</button>
+        </div>
+            <h2>Display All Product</h2>
+            <table id="Product_table">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productBody"></tbody>
+            </table>
+        <script>
+            let product_list = ["Sony Xperia","Samsung Galaxy","Nokia 6", "Redmi","iPhone 16"];
+            function show(){
+                const tbody=document.getElementById("productBody");
+                tbody.innerHTML="";
+                product_list.forEach((product,index) => {
+                    const row =document.createElement("tr");
+                    row.innerHTML=`
+                    <td>${index +1}</td>
+                    <td>${product}</td>
+                    <td><button class="edit-btn" onclick="edit(${index})">Edit</td>
+                    <td><button class="del-btn" onclick="del(${index})">Delete</td>`;
+                        tbody.appendChild(row);
+                });
+            }
+            function add(){
+                const input=document.getElementById("productInput");
+                const newproduct = input.value.trim();
+
+                if(newproduct !==""){
+                    product_list.push(newproduct);
+                    input.value="";
+                    show();
+                }else{
+                    alert("Please enter a product name!")
+                }
+            }
+            function edit(index){
+                const newname = prompt("Enter a new name", product_list[index]);
+                if (newname && newname.trim()!==""){
+                    product_list[index]=newname.trim();
+                    show();
+                }
+            }
+            function del(index){
+               product_list.splice(index, 1);
+               show();
+            }
+           show();
+        </script>
+    </body>
+</html>
