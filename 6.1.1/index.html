@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Hồ cá</title>
+        <link rel="stylesheet" href="hoca.css">
+    </head>
+    <body>
+        <div id = "shark">
+            <img src = "/6.1.1/aquarium/shark.png">
+        </div>
+
+        <div id = "diver1">
+            <img src = "/6.1.1/aquarium/diver1.png">
+        </div>
+
+        <div id = "diver2">
+            <img src = "/6.1.1/aquarium/diver2.png">
+        </div>
+
+        <div id = "diver3">
+            <img src = "/6.1.1/aquarium/diver3.png">
+        </div>
+
+        <div id = "faint">
+            <img src = "/6.1.1/aquarium/faintSchool.png">
+        </div>
+
+        <div id = "goldfish">
+            <img src = "/6.1.1/aquarium/goldFishSchool.png">
+        </div>
+
+        <div id = "turtle">
+            <img src = "/6.1.1/aquarium/turtle.png">
+        </div>
+        <img src="/6.1.1/aquarium/ocean.jpg" id="ocean">
+        <button onclick="change();">Change background</button>
+        <button onclick="audio()">Music</button>
+        <audio id="Audio" src="musicsea.mp3" loop></audio>
+    </body>
+        <script>  
+            let count1 = 0;
+            let count2 = 0;
+            var img = "/6.1.1/aquarium/ocean.jpg";
+            function change(){
+                count1++;
+                if (count1 % 3 == 0){
+                    img = "/6.1.1/aquarium/ocean.jpg";
+                }
+                else if (count1 % 3 == 1){
+                    img = "/6.1.1/aquarium/biển.jpg";
+                }
+                else{
+                    img = "/6.1.1/aquarium/daiduon.jpg";
+                }
+                document.getElementById("ocean").src = img
+            }
+            function audio(){
+                count2++;
+                if (count2 % 2 == 0){
+                    const audio = document.getElementById("Audio");
+                    audio.pause();
+                }
+                else{
+                    const audio = document.getElementById("Audio");
+                    audio.play();
+                }
+            }
+        </script>
+</html>
