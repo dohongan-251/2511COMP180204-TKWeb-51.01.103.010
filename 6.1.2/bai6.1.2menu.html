@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <Title>halloween</Title>
+        <style>
+            .bg{
+                height: 100%;
+                width: 100%;
+                
+            }
+            .text{
+                font-size: 20px;
+                font-family: monospace;
+            }
+            .text a:hover{
+                color: white;
+            }
+            .trang-chu{
+                position: absolute;
+                top: 120px;
+                left: 170px;
+                border: 4px solid rgb(248, 181, 47);
+                background-color: rgb(245, 181, 55);
+                border-radius: 30px;
+            }
+            .trang-chu a{
+                text-decoration: none;
+                color: brown;
+            }
+            .text2 a{
+                 text-decoration: none;
+                color: brown;
+            }
+            .text2{
+                position: absolute;
+                top: 220px;
+                left: 170px;
+                border: 4px solid rgb(248, 181, 47);
+                background-color: rgb(245, 181, 55);
+                border-radius: 30px;
+            }
+
+            .text3{
+                position: absolute;
+                top: 290px;
+                left: 170px;
+                border: 4px solid rgb(248, 181, 47);
+                background-color: rgb(245, 181, 55);
+                border-radius: 30px;
+            }
+            .text3 a{
+                text-decoration: none;
+                color: brown;
+            }
+            .text4{
+                position: absolute;
+                top: 380px;
+                left: 170px;
+                border: 4px solid rgb(248, 181, 47);
+                background-color: rgb(245, 181, 55);
+                border-radius: 30px;
+            }
+            .text4 a{
+                text-decoration: none;
+                color: brown;
+
+            }
+            .text5{
+                position: absolute;
+                top: 480px;
+                left: 170px;
+                border: 4px solid rgb(248, 181, 47);
+                background-color: rgb(245, 181, 55);
+                border-radius: 30px;
+            }
+            .text5 a{
+                text-decoration: none;
+                color: brown;
+            }
+            .cat{
+                height: 70px;
+                position: absolute;
+                left: 90px;
+                top: 100px;
+            }
+            .pumpkin{
+                height: 70px;
+                position: absolute;
+                left: 90px;
+                top: 190px;
+            }
+
+            .bat{
+                height: 70px;
+                position: absolute;
+                left: 90px;
+                top: 270px;
+            }
+            .mummy{
+                height: 70px;
+                position: absolute;
+                left: 90px;
+                top: 360px;
+            }
+            .house{
+                height: 70px;
+                position: absolute;
+                left: 90px;
+                top: 460px;
+            }
+            h1{
+                position: absolute;
+                left: 440px;
+                font-family: 'Courier New', Courier, monospace;
+                font-size: 60px;
+            }
+            .menu{
+                position: absolute;
+                color: rgb(60, 47, 32);
+                font-family: calibri;
+                font-size: 40px;
+                left: 450px;
+                top: 170px;
+
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="trang chu">
+            <h1><strong>HALLOWEEN PARTY</strong></h1>
+                <div class="text">
+                    <div class="trang-chu">
+                        <a href="bài 6.1.2.html" class="home-btn"> Trang chủ</a>
+                    </div>
+                    <div class="text2">
+                        <a href="bai6.1.2lichsu.html" class="his-btn">Lịch sử</a>
+                    </div>
+                    <div class="text3">
+                        <a href="bai6.1.2menu.html" class="menu-btn">Menu</a>
+                    </div>
+                    <div class="text4">
+                        <a href="bai6.1.2lienhe.html" class="contact-btn">Liên hệ</a>
+                    </div>
+                    <div class="text5">
+                        <a href="bai6.1.2bosuutap.html" class="bst-btn">Bộ sưu tập</a>
+                    </div>
+                    <div class="menu">
+                        <fieldset>
+                             <legend style="text-align: center;">Menu</legend>
+                             1. Pumpkin candy
+                             <br>
+                             2. Pumpkin soup
+                             <br>
+                             3. Pumpkin snack (other snacks)
+                             <br>
+                             4. Fried chicken
+                             <br>
+                             5.Grilled Turkey
+                        </fieldset>
+                       
+                    </div>
+                    
+                <img class="house" src="/images/halloween/Iconcreme-Halloween-Home.512.png">
+                <img class="bat" src="/images/halloween/Iconcreme-Halloween-Bat.512.png">
+                <img class="mummy" src="/images/halloween/Iconcreme-Halloween-Mummy.512.png">
+                <img class ="cat" src="/images/halloween/Iconcreme-Halloween-Cat.512.png">
+                <img class="pumpkin" src="/images/halloween/Iconcreme-Halloween-Pumpkin.512.png">
+                <img class="bg" src="/images/halloween.jpg">
+                <audio id="clickSound" src="/images/shortsound.mp3"></audio>
+        </div>
+
+         <script>
+            const sound=document.getElementById("clickSound");
+            const buttons=document.querySelectorAll(".home-btn, .his-btn, .menu-btn, .contact-btn, .bst-btn");
+            const detectCollision = (mouseX,mouseY, element)=>{
+                const rect=element.getBoundingClientRect();
+                if(mouseX >= rect.left &&
+                    mouseX <=rect.right&&
+                    mouseY >= rect.top &&
+                    mouseY <=rect.bottom
+                ){
+                    return true;
+                }
+                return false;
+            };
+            document.addEventListener("click", (event)=>{
+                const mouseX = event.clientX;
+                const mouseY = event.clientY;
+
+                buttons.forEach(btn => {
+                    if(detectCollision(mouseX,mouseY,btn)){
+                        sound.currentTime = 0;
+                        sound.play();
+                        btn.style.transform = "scale(1.1)";
+                        setTimeout(()=>{
+                            btn.style.transform="scale(1)";
+                        window.location.href = btn.href;
+                        }, 300)
+                    }
+                });
+                    event.preventDefault();
+                
+            });
+        </script>
+        
+    </body>
+</html>
